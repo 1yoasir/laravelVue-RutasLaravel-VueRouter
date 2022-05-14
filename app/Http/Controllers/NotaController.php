@@ -15,12 +15,8 @@ class NotaController extends Controller
     public function index(Request $request)
     {
         //return Nota::where('user_id', auth()->id())->get();
-
-        if($request->ajax()){
-            return Nota::where('user_id',  auth()->id())->orderBy('nombre')->get();
-        } else {
-            return view('home');
-        }
+            $notas = Nota::where('user_id',  auth()->id())->orderBy('nombre')->get();
+            return $notas;
     }
 
     /**
@@ -28,10 +24,6 @@ class NotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,10 +60,6 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
