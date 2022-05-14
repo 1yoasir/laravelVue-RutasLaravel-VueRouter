@@ -41,6 +41,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "mostrarNotas",
   data: function data() {
@@ -176,102 +184,115 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.isAuthenticated
-    ? _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-lg-12 mb-4" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-success btn-block",
-                attrs: { to: { name: "crearNota" } },
-              },
-              [_vm._v("Crear Nota")]
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _vm.isAuthenticated
+          ? _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v("Administrar  Notas"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-success btn-block",
+                      attrs: { to: { name: "crearNota" } },
+                    },
+                    [_vm._v("Crear Nota")]
+                  ),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "mt-3" }),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Listado de notas")]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "list-group my-2" },
+                    _vm._l(_vm.notas, function (item, index) {
+                      return _c(
+                        "li",
+                        { key: index, staticClass: "list-group-item" },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "badge bg-primary",
+                              staticStyle: { float: "right" },
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(item.updated_at) +
+                                  "\n                            "
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(item.nombre))]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(item.descripcion))]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger btn-sm",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.eliminarNota(item, index)
+                                },
+                              },
+                            },
+                            [_vm._v("Eliminar")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-warning text-white btn-sm",
+                              attrs: {
+                                to: {
+                                  name: "editarNota",
+                                  params: { id: item.id },
+                                },
+                              },
+                            },
+                            [_vm._v("Editar")]
+                          ),
+                        ],
+                        1
+                      )
+                    }),
+                    0
+                  ),
+                ],
+                1
+              ),
+            ])
+          : _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h1", [_vm._v("Es necesario que te verifiques")]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: { name: "bienvenida" } },
+                  },
+                  [_vm._v("Hacer login")]
+                ),
+              ],
+              1
             ),
-            _vm._v(" "),
-            _c("hr", { staticClass: "mt-3" }),
-            _vm._v(" "),
-            _c("h3", [_vm._v("Listado de notas")]),
-            _vm._v(" "),
-            _c(
-              "ul",
-              { staticClass: "list-group my-2" },
-              _vm._l(_vm.notas, function (item, index) {
-                return _c(
-                  "li",
-                  { key: index, staticClass: "list-group-item" },
-                  [
-                    _c(
-                      "span",
-                      {
-                        staticClass: "badge bg-primary",
-                        staticStyle: { float: "right" },
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.updated_at) +
-                            "\n            "
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(item.nombre))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(item.descripcion))]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function ($event) {
-                            return _vm.eliminarNota(item, index)
-                          },
-                        },
-                      },
-                      [_vm._v("Eliminar")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-warning text-white btn-sm",
-                        attrs: {
-                          to: { name: "editarNota", params: { id: item.id } },
-                        },
-                      },
-                      [_vm._v("Editar")]
-                    ),
-                  ],
-                  1
-                )
-              }),
-              0
-            ),
-          ],
-          1
-        ),
-      ])
-    : _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _c("h1", [_vm._v("Es necesario que te verifiques")]),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { to: { name: "bienvenida" } },
-            },
-            [_vm._v("Hacer login")]
-          ),
-        ],
-        1
-      )
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

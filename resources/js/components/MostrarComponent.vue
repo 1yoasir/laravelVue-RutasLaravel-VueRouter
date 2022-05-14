@@ -1,31 +1,39 @@
 <template>
-    <div class="row" v-if="isAuthenticated">
-        <div class="col-lg-12 mb-4">
-            <router-link :to='{name:"crearNota"}' class="btn btn-success btn-block">Crear Nota</router-link>
-            <hr class="mt-3">
-        <h3>Listado de notas</h3>
-        <ul class="list-group my-2">
-            <li class="list-group-item"
-            v-for="(item, index) in notas" :key="index">
-                <span class="badge bg-primary" style="float:right">
-                    {{item.updated_at}}
-                </span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card" v-if="isAuthenticated">
+                <div class="card-header">Administrar  Notas</div>
+
+                <div class="card-body">
+                    <router-link :to='{name:"crearNota"}' class="btn btn-success btn-block">Crear Nota</router-link>
+                    <hr class="mt-3">
+                    <h3>Listado de notas</h3>
+                    <ul class="list-group my-2">
+                        <li class="list-group-item"
+                            v-for="(item, index) in notas" :key="index">
+                            <span class="badge bg-primary" style="float:right">
+                                {{item.updated_at}}
+                            </span>
             
-                <p>{{item.nombre}}</p>
-                <p>{{item.descripcion}}</p>
+                            <p>{{item.nombre}}</p>
+                            <p>{{item.descripcion}}</p>
 
-                <button class="btn btn-danger btn-sm"
-                @click="eliminarNota(item, index)">Eliminar</button>
+                            <button class="btn btn-danger btn-sm"
+                            @click="eliminarNota(item, index)">Eliminar</button>
 
-                <router-link :to='{name: "editarNota", params:{id: item.id}}' class="btn btn-warning text-white btn-sm">Editar</router-link>
-            </li>
-        </ul>
+                            <router-link :to='{name: "editarNota", params:{id: item.id}}' class="btn btn-warning text-white btn-sm">Editar</router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body" v-else>
+                <h1>Es necesario que te verifiques</h1>
+                <router-link :to='{name:"bienvenida"}' class="btn btn-primary">Hacer login</router-link>
+            </div>
         </div>
     </div>
-    <div class="card-body" v-else>
-        <h1>Es necesario que te verifiques</h1>
-        <router-link :to='{name:"bienvenida"}' class="btn btn-primary">Hacer login</router-link>
-    </div>
+</div>
 </template>
 
 <script>
